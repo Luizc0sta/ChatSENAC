@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:primeiro_app/utilitarios/tipografia.dart';
 
 void main() {
   runApp(MyApp());
@@ -11,9 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        body: Login(),
-      ),
+      home: Scaffold(backgroundColor: Colors.white, body:SafeArea(child: Login())),
     );
   }
 }
@@ -24,24 +23,40 @@ class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-      FlutterLogo(size: 18,),
-        Text('ChatSENAC'),
-        Text("Entre na sua conta"),
-        Text("Coloque seu email e senha para logar"),
-        Text("Email"),
+        Row(
+          children: [
+            FlutterLogo(size: 20,),
+            Text('ChatSENAC'),
+          ],
+
+        ),
+
+        //Titulos
+        Text("Entre na sua conta", style: Tipografia.h1,),
+        Text("Coloque seu email e senha para logar", style: Tipografia.subtitulo,),
+
+        // Campos
+        Text("Email", style: Tipografia.subtitulo,),
         TextField(),
-        InkWell(child: Text("Esqueceu a senha?")),
+        Text("Senha", style: Tipografia.subtitulo, ),
+        TextField(),
+        InkWell(child: Text("Esqueceu a senha?", textAlign: TextAlign.right, style: Tipografia.link,),),
+
         ElevatedButton(onPressed: null, child: Text("Entrar")),
-        Text("Ou"),
+        Text("Ou", textAlign: TextAlign.center,),
         ElevatedButton(onPressed: null, child: Text("Continuar com Google")),
         ElevatedButton(onPressed: null, child: Text("Continuar com Facebook")),
-        Text("Não tem uma conta?"),
-        InkWell(child: Text("Cadastra-se")),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text("Não tem uma conta?"),
+            InkWell(child: Text("Cadastra-se")),
+          ],
+        )
       ],
     );
   }
 }
-
-
 
