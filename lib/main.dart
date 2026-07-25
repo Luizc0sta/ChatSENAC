@@ -27,11 +27,13 @@ class Login extends StatelessWidget {
       children: [
         Row(
           children: [
-            FlutterLogo(size: 20,),
+            FlutterLogo(size: 18,),
             Text('ChatSENAC'),
+            SizedBox(height: 32,),
           ],
 
         ),
+
 
         //Titulos
         Text("Entre na sua conta", style: Tipografia.h1,),
