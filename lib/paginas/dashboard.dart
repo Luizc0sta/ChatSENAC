@@ -7,13 +7,7 @@ class Dashboard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("ChatSENAC"),
-      ),
-      body: const Center(
-        child: Text(
-          "HOLA MY AMIGOS",
-          style: TextStyle(fontSize: 24),
-        ),
+        title: Text("ChatSENAC"),
       ),
     );
   }

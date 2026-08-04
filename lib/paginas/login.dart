@@ -16,153 +16,114 @@ class _LoginState extends State<Login> {
     if (emailControlador.text != "teste@email.com" ||
         senhaControlador.text != "123456") {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("Email e/ou senhas estão incorretos")),
+        SnackBar(content: Text("Email e/ou senhas estão incorretos!")),
       );
-
       return;
     }
-    Navigator.pushReplacement(context, MaterialPageRoute(builder: (build) => Dashboard()),
-    );
+
+    Navigator.pushReplacement(context, MaterialPageRoute(builder: (build) => Dashboard()));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: SingleChildScrollView(
-          // Tópico 1: Rolagem e margens nas bordas
-          padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              // Logo e Nome do App
-              Row(
-                children: [
-                  FlutterLogo(size: 18),
-                  const SizedBox(width: 8), // Tópico 3: Espaço horizontal
-                  Text("ChatSENAC"),
-                ],
-              ),
-              const SizedBox(height: 32), // Tópico 3
-              // Títulos
-              Text("Entre na sua conta", style: Tipografia.h1),
-              const SizedBox(height: 12), // Tópico 3
-              Text(
-                "Coloque o seu email e senha para logar",
-                style: Tipografia.subtitulo,
-              ),
-              const SizedBox(height: 32), // Tópico 3
-              // Campo de Email
-              Text("Email"),
-              const SizedBox(height: 4), // Tópico 3
-              TextField(
-                controller: emailControlador,
-                // Tópico 4: Estilização do input
-                decoration: InputDecoration(
-                  hintText: "exemplo@gmail.com",
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  contentPadding: const EdgeInsets.symmetric(
-                    horizontal: 16,
-                    vertical: 12,
-                  ),
-                ),
-              ),
-              const SizedBox(height: 16), // Tópico 3
-              // Campo de Senha
-              Text("Senha"),
-              const SizedBox(height: 4), // Tópico 3
-              TextField(
-                controller: senhaControlador,
-                // Tópico 5: Oculta a senha
-                obscureText: true,
-                decoration: InputDecoration(
-                  hintText: "••••••••",
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  suffixIcon: Icon(Icons.visibility_off),
-                  contentPadding: const EdgeInsets.symmetric(
-                    horizontal: 16,
-                    vertical: 12,
-                  ),
-                ),
-              ),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Row(children: [FlutterLogo(size: 18), Text("ChatSENAC")]),
+                SizedBox(height: 32),
 
-              const SizedBox(height: 12), // Tópico 3
-              // Esqueceu a senha
-              InkWell(
-                child: Text(
-                  "Esqueceu a senha?",
-                  style: Tipografia.link,
-                  textAlign: TextAlign.right,
+                // Titulos
+                Text("Entre na sua Conta", style: Tipografia.h1),
+                SizedBox(height: 12),
+                Text(
+                  "Coloque o seu email e senha para logar",
+                  style: Tipografia.subtitulo,
                 ),
-              ),
-              const SizedBox(height: 24), // Tópico 3
-              // Botão Entrar Principal
-              SizedBox(
-                height: 48,
-                child: ElevatedButton(
+                SizedBox(height: 32),
+
+                // Campos
+                Text("Email", style: Tipografia.subtitulo),
+                TextField(
+                  controller: emailControlador,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 16),
+                Text("Senha", style: Tipografia.subtitulo),
+                TextField(
+                  controller: senhaControlador,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    suffixIcon: Icon(Icons.visibility_off),
+                  ),
+                  obscureText: true,
+                ),
+                SizedBox(height: 16),
+                InkWell(
+                  onTap: () {},
+                  child: Text(
+                    "Esqueceu a senha?",
+                    textAlign: TextAlign.right,
+                    style: Tipografia.link,
+                  ),
+                ),
+                SizedBox(height: 24),
+                // Botões
+                ElevatedButton(
                   onPressed: fazerLogin,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.blue,
                     foregroundColor: Colors.white,
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
                     ),
-                    elevation: 0,
+                    padding: EdgeInsets.symmetric(vertical: 16),
                   ),
-                  child: const Text(
-                    "Entrar",
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                  ),
+                  child: Text("Entrar", style: Tipografia.subtitulo),
                 ),
-              ),
-              const SizedBox(height: 16), // Tópico 3
-
-              const Text(
-                "ou",
-                textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.grey),
-              ),
-              const SizedBox(height: 16), // Tópico 3
-              // Tópico 6: Botão Google com OutlinedButton e altura 48
-              SizedBox(
-                height: 48,
-                child: OutlinedButton(
-                  onPressed: () {},
-                  style: OutlinedButton.styleFrom(
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                SizedBox(height: 24),
+                Text("Ou", textAlign: TextAlign.center),
+                SizedBox(height: 16),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.white,
+                    foregroundColor: Colors.black87,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
                     ),
-                    side: const BorderSide(color: Colors.grey),
                   ),
+                  onPressed: () {},
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     spacing: 10,
                     children: [
                       Image.asset("assets/imagens/google-icon.png", height: 18),
-                      Text(
-                        "Continuar com o Google",
-                        style: Tipografia.subtitulo,
-                      ),
+                      Text("Continuar com Google", style: Tipografia.subtitulo),
                     ],
                   ),
                 ),
-              ),
-              const SizedBox(height: 12), // Tópico 3
-              // Tópico 6: Botão Facebook com OutlinedButton e altura 48
-              SizedBox(
-                height: 48,
-                child: OutlinedButton(
-                  onPressed: () {},
-                  style: OutlinedButton.styleFrom(
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                SizedBox(height: 16),
+
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.white,
+                    foregroundColor: Colors.black87,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
                     ),
-                    side: const BorderSide(color: Colors.grey),
                   ),
+                  onPressed: () {},
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     spacing: 10,
@@ -172,33 +133,31 @@ class _LoginState extends State<Login> {
                         height: 18,
                       ),
                       Text(
-                        "Continuar com o Facebook",
+                        "Continuar com Facebook",
                         style: Tipografia.subtitulo,
-                        textAlign: TextAlign.center,
                       ),
                     ],
                   ),
                 ),
-              ),
-              const SizedBox(height: 54), // Tópico 3
-              // Rodapé Cadastre-se
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text("Não tem uma conta? "),
-                  InkWell(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (build) => Cadastro()),
-                      );
-                    },
-                    // TÓPICO 7 APLICADO AQUI: Correção ortográfica de "Cdastre-se" para "Cadastre-se"
-                    child: Text("Cadastre-se", style: Tipografia.link),
-                  ),
-                ],
-              ),
-            ],
+                SizedBox(height: 54),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  spacing: 6,
+                  children: [
+                    Text("Não tem uma conta?", style: Tipografia.subtitulo),
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (build) => Cadastro()),
+                        );
+                      },
+                      child: Text("Cadastre-se", style: Tipografia.link),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),
